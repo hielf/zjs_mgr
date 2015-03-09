@@ -1,0 +1,50 @@
+<%= render :partial => 'cust_detail_grid' %>
+
+<div class="row-fluid">
+	<div class="span12 well">
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="row-fluid">
+						<div class="span4">
+							客户姓名：
+						</div>
+						<div class="span8">
+							<%= grid_filter @custs_grid, :name_filter  %>
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="row-fluid">
+						<div class="span4">
+							资金账号：
+						</div>
+						<div class="span8">
+							<%= grid_filter @custs_grid, :capital_account_filter  %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="row-fluid">
+						<div class="span4">
+							月份：
+						</div>
+						<div class="span8">
+							<%= grid_filter @custs_grid, :month_filter  %>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="form-actions">
+						<button class="btn btn-primary wg-external-submit-button" data-grid-name="custs">查询</button>
+						<%= link_to '返回', custs_path, :class => 'btn' %>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+<%= render_grid(@custs_grid) %>

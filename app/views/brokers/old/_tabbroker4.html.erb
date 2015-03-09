@@ -1,0 +1,20 @@
+<div class="accordion" id="accordion2">
+	<% @salary_months.each do |t| %>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=t.month_id%>">
+					薪酬报告 #<%=t.month_id%>
+				</a>
+			</div>
+			<div id="collapse<%=t.month_id%>" class="collapse in" <% if @salary_months.first.month_id == t.month_id %>style="height: auto;"<% else %>style="height: 0px;"<% end %>>
+				<div class="accordion-inner">
+					<%= render :partial => 'broker_salary', :locals => { :object => broker_salary(t.month_id) } %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>​
+ 
+
+
+

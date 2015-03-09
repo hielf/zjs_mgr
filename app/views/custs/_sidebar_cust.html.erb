@@ -1,0 +1,25 @@
+<div>
+	<div class="sidebar-nav well">
+		<ul class="inline">
+		  <li><h4><%= link_to @cust.cust_name, cust_path(@cust), :class => "link" %></h4></li>
+		  <li>
+		  	<div id="favor_form">
+				  <% if user_broker(current_user) %>
+						<% if user_broker(current_user).favor_cust?(@cust) %>
+							<%= render 'unfavor' %>
+						<% else %>
+							<%= render 'favor' %>
+						<% end %>
+					<% end %>
+				</div>
+			</li>
+		</ul>
+		<ul class="common-divider"></ul>
+		<address>
+			<strong>资金账号：</strong><%= @cust.capital_account %><br/>
+			<strong>客户生日：</strong><%= @cust.birthday.strftime("%F") if @cust.birthday %><br/>
+			<strong>开户日期：</strong><%= @cust.open_date.to_time.strftime("%F") if @cust.open_date %><br/>
+			<!-- <ul class="common-divider"></ul> -->
+		</address>		
+	</div>
+</div>

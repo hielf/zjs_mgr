@@ -1,0 +1,27 @@
+<div class="row-fluid">
+	<div class="span9">
+		<div class="well">
+			<p class="lead text-center"><legend><strong>审批岗位</strong></legend></p>
+			<table class="table table-bordered table-striped table-condensed">	
+				<thead>
+					<tr>
+			      <th>岗位名称</th>
+			    </tr>
+				</thead>
+			  <tbody>
+					<%= render @userpositions %>
+			  </tbody>
+			</table>
+			<div class="form-actions">
+				<%= link_to '新建岗位', new_userposition_path, :class => 'btn btn-primary pull-right' %>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="alert alert-block">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <h4>帮助</h4>
+		  审批岗位是指各级流程办理人员的审批权限。
+		</div>
+	</div>
+</div>

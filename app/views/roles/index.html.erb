@@ -1,0 +1,27 @@
+<div class="row-fluid">
+	<div class="span9">
+		<div class="well">
+			<p class="lead text-center"><legend><strong>用户角色</strong></legend></p>
+			<table class="table table-bordered table-striped table-condensed">	
+				<thead>
+					<tr>
+			      <th>角色名称</th>
+			    </tr>
+				</thead>
+			  <tbody>
+					<%= render @roles %>
+	  		</tbody>
+			</table>
+			<div class="form-actions">
+				<%= link_to '新建', new_role_path, :class => 'btn btn-primary pull-right' %>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="alert alert-block">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  <h4>帮助</h4>
+		  用户角色主要控制用户的功能访问权限和数据存取权限。
+		</div>
+	</div>
+</div>

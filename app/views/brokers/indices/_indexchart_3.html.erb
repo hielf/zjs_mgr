@@ -1,0 +1,186 @@
+<script type="text/javascript" charset="utf-8">
+$(function() {
+	showChartResult3(70011,70002,70001,70010, <%= Time.now.strftime("%Y%m") %>);
+	
+	$('#btn-group-chart3 button').click( function() {
+		var radio = $(this).attr('value');
+		if ($('#nav-broker-select-month').is(":hidden")) {
+			var selected = $('#nav-broker-point-year').find('.btn.btn-small.active').attr('value') + $('#nav-broker-point-month').find('.btn.btn-small.active').attr('value');
+		}
+		else {
+			var selected = $('#nav-broker-select-month').find("option:selected").text();
+		}
+		switch (radio) {
+		    case "1": showChartResult3(70004,70005,70006,70010, selected);
+				break;
+		    case "2": showChartResult3(70011,70002,70001,70010, selected);
+				break;
+		}
+	});
+});
+
+$('#nav-broker-point-year button').click( function(e) {
+	var selected = $(this).attr('value') + $('#nav-broker-point-month').find('.btn.btn-small.active').attr('value');
+	var radio = $('#btn-group-chart3').find('.btn.active').attr('value')
+	switch (radio) {
+	    case "1": showChartResult3(70004,70005,70006,70010, selected);
+			break;
+	    case "2": showChartResult3(70011,70002,70001,70010, selected);
+			break;
+	}
+	// console.log(selected);
+});
+
+$('#nav-broker-point-month button').click( function(e) {
+	var selected = $('#nav-broker-point-year').find('.btn.btn-small.active').attr('value') + $(this).attr('value');
+	var radio = $('#btn-group-chart3').find('.btn.active').attr('value')
+	switch (radio) {
+	    case "1": showChartResult3(70004,70005,70006,70010, selected);
+			break;
+	    case "2": showChartResult3(70011,70002,70001,70010, selected);
+			break;
+	}
+	// console.log(selected);
+});
+
+$('#nav-broker-select-month').change( function() {
+	var selected = $(this).find("option:selected").text();
+	var radio = $('#btn-group-chart3').find('.btn.active').attr('value')
+	switch (radio) {
+	    case "1": showChartResult3(70004,70005,70006,70010, selected);
+			break;
+	    case "2": showChartResult3(70011,70002,70001,70010, selected);
+			break;
+	}
+	console.log(selected);
+});
+
+function showChartResult3(i1,i2,i3,i4,m) {
+	_broker = <%= @broker.id %>
+	_url_1 = '/brokers/' + _broker + '/brokerindices/' + i1 + '/broker_index.json'
+	_url_2 = '/brokers/' + _broker + '/brokerindices/' + i2 + '/broker_index.json'
+	_url_3 = '/brokers/' + _broker + '/brokerindices/' + i3 + '/broker_index.json'
+	_url_4 = '/brokers/' + _broker + '/brokerindices/' + i4 + '/broker_index.json'
+	_width3 = _width
+	if (_width > 640) {
+		_width3 = _width3 / 2.15
+	}
+	$.get(_url_1, function (data_1) {
+		$.get(_url_2, function (data_2) {
+			$.get(_url_3, function (data_3) {
+				$.get(_url_4, function (data_4) {
+								
+								_results1 = [];
+								_results2 = [];
+								_results3 = [];
+								_results4 = [];
+								_month = [];
+								b = 0;
+								l = 0;
+								for(var i in data_1){   
+								if (data_1[i].month == m) {
+									 b = i
+									 l = b - 5
+									}
+								}
+								if (l < 0) {
+									l = 0
+								}
+									for(var i in data_1){
+										if ((i-l)*(b-i)>=0) {
+											_month.push(data_1[i].month);
+											_results1.push(parseFloat(data_1[i].total));
+										}
+									}
+									
+									for(var i in data_2){
+										if ((i-l)*(b-i)>=0) {
+											_results2.push(parseFloat(data_2[i].total));
+										}
+									}
+									for(var i in data_3){
+										if ((i-l)*(b-i)>=0) {
+											_results3.push(parseFloat(data_3[i].total));
+										}
+									}
+									for(var i in data_4){
+										if ((i-l)*(b-i)>=0) {
+											_results4.push(parseFloat(data_4[i].total));
+										}
+									}
+									// console.log('_results1' + _results1 + '_results2' + _results2 + '_results3' + _results3 + '_results4' + _results4 + '_results5' + _results5 + '_results6' + _results6 + '_results7' + _results7);
+									_name1 = data_1[i].subtitle;
+									_name2 = data_2[i].subtitle;
+									_name3 = data_3[i].subtitle;
+									_name4 = data_4[i].subtitle;
+									
+								$('#chart_3').highcharts({
+									title: {
+						        text: '半年内客户变动'
+						      },
+									chart: {
+										type: 'spline',
+										width: _width3
+									},
+									tooltip: {
+			                shared: true,
+			                valueSuffix: ' 人'
+			            },
+									xAxis: {
+			                categories: _month,
+			                tickmarkPlacement: 'on',
+			                title: {
+			                    enabled: false
+			                }
+			            },
+									yAxis: {
+											title: {
+												text: "客户数"
+											},
+											labels: {
+						             align: 'left',
+						             x: 3,
+						             y: 16,
+						             formatter: function() {
+						                 return Highcharts.numberFormat(this.value, 0);
+						             }
+						          },
+									},
+			            plotOptions: {
+			                area: {
+			                    stacking: 'normal',
+			                    lineColor: '#666666',
+			                    lineWidth: 1,
+			                    marker: {
+			                        lineWidth: 1,
+			                        lineColor: '#666666'
+			                    }
+			                }
+			            },
+									 credits: {
+											 enabled: false
+									 },
+						       series: [{
+										name: _name1,
+										data: _results1
+						       	},
+										{
+										name: _name2,
+										data: _results2
+						       	},
+										{
+										name: _name3,
+										data: _results3
+							      },
+										{
+										name: _name4,
+										data: _results4
+								    }
+									 ]
+					});
+				});
+			});
+		});
+	});
+};
+</script>

@@ -1,0 +1,38 @@
+<div class="span9">
+	<div class="tabbable tabs">
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a href="#1" data-toggle="tab">人员情况</a></li>
+	    <li><a href="#2" data-toggle="tab">客户情况</a></li>
+			<li><a href="#3" data-toggle="tab">绩效考核</a></li>
+			<% #if !@salary_months.empty? %>
+			<li><a href="#4" data-toggle="tab">收入报酬</a></li>
+			<% #end %>
+			<li><a href="#5" data-toggle="tab">营销活动</a></li>
+	  </ul>
+	  <div class="tab-content">
+	    <div class="tab-pane active" id="1">
+				<%= render 'brokers/tabbroker1' %>
+				<div class="well">
+					<div id="tab_page"></div>
+				</div>
+	    </div>
+	    <div class="tab-pane" id="2">
+				<%= render 'brokers/tabbroker2' %>
+	    </div>
+	    <div class="tab-pane" id="3">
+				<%= render 'brokers/tabbroker3' %>
+	    </div>
+	    <div class="tab-pane" id="4">
+				<%= render 'brokers/tabbroker4' %>
+	    </div>
+			<div class="tab-pane" id="5">
+				<%= render 'brokers/tabbroker5' %>
+	    </div>
+	  </div>
+	</div>
+</div>
+<div class="span3">
+	<%= render 'brokers/sidebarbroker1' %>
+	<%= render 'brokers/sidebarbroker2' %>
+</div>
+

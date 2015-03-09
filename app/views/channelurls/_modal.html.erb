@@ -1,0 +1,12 @@
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">渠道URL</h3>
+  </div>
+  <div class="modal-body">
+    <div class="input-append">
+      <span class="input-xlarge uneditable-input"><%= @channelurl.url %></span>
+      <%= link_to '访问', @channelurl.url, :class => 'btn' %>
+    </div>
+  </div>
+</div>

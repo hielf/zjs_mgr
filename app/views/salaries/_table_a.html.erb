@@ -1,0 +1,102 @@
+<table class="table table-striped table-bordered table-condensed">
+  <tbody>
+    <tr>
+      <td><strong>提成净佣金：</strong></td>
+      <td colspan="5"><%= get_num(130125) %></td>
+    </tr>
+		<tr class="hidden-phone">
+			<td><strong>融资融券总净佣金：</strong></td>
+      <td colspan="2"><%= get_num(130198) %></td>
+			<td><strong>报价回购业务收入：</strong></td>
+      <td colspan="2"><%= get_num(600005) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>普通净佣金：</strong></td>
+      <td colspan="2"><%= get_num(130194) %></td>
+      <td><strong>两融净息费：</strong></td>
+      <td colspan="2"><%= get_num(610001) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>约定购回净息费：</strong></td>
+      <td><%= get_num(610004) %></td>
+			<td><strong>质押回购净息费：</strong></td>
+      <td><%= get_num(610003) %></td>
+			<td><strong>快融宝净息费：</strong></td>
+      <td><%= get_num(610005) %></td>
+		</tr>
+		<tr>
+			<td><strong>总成交量：</strong></td>
+      <td colspan="5"><%= get_num(130105) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>普通成交量：</strong></td>
+      <td><%= get_num(130195) %></td>
+			<td><strong>融资融券总成交量：</strong></td>
+      <td><%= get_num(130191) %></td>
+      <td><strong>创新一号产品成交量：</strong></td>
+      <td><%= get_num(600138) %></td>
+		</tr>
+		<tr>
+			<td><strong>产品总收入：</strong></td>
+      <td colspan="5"><%= get_num(610200) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>产品提成：</strong></td>
+      <td><%= get_num(2001012) %></td>
+      <td><strong>市值奖</strong></td>
+      <td><%= get_num(170201) %></td>
+      <td><strong>项目奖：</strong></td>
+      <td><%= get_num(170202) %></td>
+		</tr>
+		<tr>
+			<td><strong>基本工资：</strong></td>
+      <td colspan="5"><%= get_num(130163) %></td>
+		</tr>
+		<tr>
+			<td><strong>业绩提成：</strong></td>
+      <td colspan="5"><%= get_num(200000) - get_num(130163) %></td>
+		</tr>
+		<tr>
+			<td><strong>两融净息费提成：</strong></td>
+      <td colspan="5"><%= get_num(610002) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>报价回购月均保有量：</strong></td>
+      <td><%= get_num(600165) %></td>
+			<td><strong>报价回购当月收入：</strong></td>
+      <td><%= get_num(600005) %></td>
+			<td><strong>报价回购销售奖励：</strong></td>
+      <td><%= get_num(600003) %></td>
+		</tr>
+		<tr>
+			<td><strong>开户奖：</strong></td>
+      <td colspan="5"><%= get_num(14010003) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>扣减：</strong></td>
+      <td colspan="2"><%= get_num(200003) %></td>
+			<td><strong>考勤扣款：</strong></td>
+      <td colspan="2"><%= get_num(170107) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>其他薪资调整发：</strong></td>
+      <td colspan="2"><%= get_num(170108) %></td>
+			<td><strong>其他薪资调整扣：</strong></td>
+      <td colspan="2"><%= get_num(170109) %></td>
+		</tr>
+		<tr>
+			<td><strong>补贴：</strong></td>
+      <td colspan="5"><%= get_num(14010013) %></td>
+		</tr>
+		<tr class="hidden-phone">
+			<td><strong>本月风险金返还：</strong></td>
+      <td colspan="2"><%= get_num(200005) %></td>
+			<td><strong>本月风险金留存：</strong></td>
+      <td colspan="2"><%= get_num(200002) %></td>
+		</tr>
+		<tr>
+			<td><strong>税前工资：</strong></td>
+      <td colspan="5"><%= get_num(200099) + get_num(170101) + get_num(170108) - get_num(170102).abs - get_num(170106).abs - get_num(170103).abs - get_num(170104).abs - get_num(170105).abs - get_num(170107).abs  - get_num(170109).abs %></td>
+		</tr>
+  </tbody>
+</table>

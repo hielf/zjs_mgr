@@ -1,0 +1,74 @@
+<div class="row-fluid">
+	<div class="span3">
+		<div class="alert alert-block">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			<table class="table table-bordered table-condensed">
+			 	<caption><strong>任务计划</strong></caption>
+				<tbody>
+				  <tr>
+				    <td colspan="2"><p class="text-center"><strong>客户</strong></p></td>
+			    </tr>
+					<tr>
+						<td>资金账号</td>
+						<td><%= Cust.find(@workflowunderway.custservvisit.cust_id).capital_account if @workflowunderway.custservvisit.cust_id %></td>
+					</tr>
+					<tr>	
+						<td>名称</td>
+						<td><%= @workflowunderway.custservvisit.cust_name if @workflowunderway.custservvisit.cust_name %></td>
+					</tr>
+					<tr>
+						<td colspan="2"><p class="text-center"><strong>计划</strong></p></td>
+					</tr>
+					<tr>
+						<td>地点</td>
+						<td><%= @workflowunderway.custservvisit.plan_location if @workflowunderway.custservvisit.plan_location %></td>
+					</tr>
+					<tr>	
+						<td>时间</td>
+						<td><%= @workflowunderway.custservvisit.plan_date.to_s(:db) if @workflowunderway.custservvisit.plan_date %></td>
+					</tr>
+					<tr>
+						<td colspan="2"><p class="text-center"><strong>内容</strong></p></td>
+					</tr>
+					<tr>
+						<td colspan="2"><%= @workflowunderway.custservvisit.visit_content if @workflowunderway.custservvisit.visit_content %></td>
+					</tr>
+				 </tbody>
+			</table>
+		</div>
+	</div>
+	<div class="span6">
+		<div class="well">
+			<%= render 'custservvisits/fields_exe' %>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="mini-layout">
+			<% @workflow.workflowsteps.each do |n| %>
+				<div class="row-fluid">
+					<div class="span12">
+						<% if n.step == 2 && n.workflow.code == "1001" %>
+							<div class="well" style="color:#b94a48; background-color: #f2dede;">
+						<% else %>
+							<div class="well" style="color:#468847; background-color: #dff0d8;">
+						<% end %>
+						  <strong><p class="text-center"><%= n.name %></p></strong>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12">
+						<p class="text-center"><i class="icon-arrow-down"></i></p>
+					</div>
+				</div>
+			<% end %>
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="well" style="color:#c09853; background-color: #fcf8e3;">
+					  <strong><p class="text-center">完成</p></strong>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

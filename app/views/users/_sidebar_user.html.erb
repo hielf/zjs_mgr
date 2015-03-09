@@ -1,0 +1,27 @@
+<div class="well">
+	<h4><%= @user.name %></h4>
+	<p class="muted"><strong><%= @user.usercode %></strong></p>
+	<ul class="common-divider"></ul>
+	<ul class="inline">
+		<li><strong>账户状态：</strong></li>
+		<li><%= get_dict_by_id(@user.status).name %></li><br/>
+		<% if !@user.department_id.nil? %>
+		<li><strong>分公司：</strong></li>
+		<li><%= Department.find(@user.department_id).name %></li><br/>
+		<% end %>
+		<% if !Branch.find_by_id(@user.branch_id).nil? %>
+		<li><strong>营业部：</strong></li>
+		<li><%= Branch.find(@user.branch_id).name %></li><br/>
+		<% end %>
+	</ul>
+	<ul class="common-divider"></ul>
+	<% if can? :manage, User %>
+	<p class="text text-center">
+		<%= form_for(@user, :remote => true) do |f| %>
+			<%= f.hidden_field :password, :value => "888888" %>
+			<%= f.hidden_field :password_confirmation, :value => "888888" %>
+			<%= f.submit "重置密码", :class => 'btn btn-danger' %>
+		<% end %>
+	</p>
+	<% end %>
+</div>
