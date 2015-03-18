@@ -12,7 +12,7 @@ class Ability
       can :access_user_first_page, :all
       cannot :access_broker_first_page, :all
 
-    elsif user.has_role? :营业部管理
+    elsif user.has_role? :分支机构管理
       can :access_user_first_page, :all
       can :read, Branch, :id => user.branch_id
       can :read, User,   :branch_id => user.branch_id
@@ -29,25 +29,25 @@ class Ability
       can :create, Channelurl
       can :read, Notice
       
-    elsif user.has_role? :分公司管理
-      can :access_user_first_page, :all
-      can :read, Department, :id => user.department_id
-      can :read, Branch, :department_id => user.department_id
-      can :read, User,   :department_id => user.department_id
-      can :update, User,   :department_id => user.department_id
-      can :manage, Broker, :branch_id => user.department.branches.map {|b| b.id}
-      can :read, Custservvisit
-      can :read, Workflowhistory
-      can :read, Product
-      can :downloadfile, Product
-      can :read, Cust, :branch_id => user.department.branches.map {|b| b.id}
-      can :productcusts_index, Cust, :branch_id => user.department.branches.map {|b| b.id}
-      can :cust_detail_index, Cust, :branch_id => user.department.branches.map {|b| b.id}
-      can :read, Channel
-      can :create, Channelurl
-      can :read, Notice
+    # elsif user.has_role? :分公司管理
+    #   can :access_user_first_page, :all
+    #   can :read, Department, :id => user.department_id
+    #   can :read, Branch, :department_id => user.department_id
+    #   can :read, User,   :department_id => user.department_id
+    #   can :update, User,   :department_id => user.department_id
+    #   can :manage, Broker, :branch_id => user.department.branches.map {|b| b.id}
+    #   can :read, Custservvisit
+    #   can :read, Workflowhistory
+    #   can :read, Product
+    #   can :downloadfile, Product
+    #   can :read, Cust, :branch_id => user.department.branches.map {|b| b.id}
+    #   can :productcusts_index, Cust, :branch_id => user.department.branches.map {|b| b.id}
+    #   can :cust_detail_index, Cust, :branch_id => user.department.branches.map {|b| b.id}
+    #   can :read, Channel
+    #   can :create, Channelurl
+    #   can :read, Notice
 
-    elsif user.has_role? :销售交易部管理
+    elsif user.has_role? :总部管理
       can :access_user_first_page, :all
       can :read, Department
       can :read, Branch
@@ -70,7 +70,7 @@ class Ability
       can :destroy, Notice
       can :read, Systemtasklog
       
-    elsif user.has_role? :营销人员
+    elsif user.has_role? :普通居间人
       can :access_broker_first_page, :all
       can :read, Branch, :id => user.branch_id
       can :read, User,   :id => user.id
@@ -86,7 +86,8 @@ class Ability
       can :cust_detail_index, Cust, :branch_id => user.branch_id
       can :read, Notice
     else
-      # can :read, :all
+      can :new, :user
+      can :create, :user
     end
   end
     # Define abilities for the passed in user here. For example:

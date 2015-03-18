@@ -1,5 +1,9 @@
 # encoding: utf-8
 class Broker < ActiveRecord::Base
+  attr_accessible :broker_code, :broker_name, :branch_id, :open_date, :close_date, :certificate_num,
+                  :certificate_addr, :mobile, :phone, :email, :birthday, :bank_account, :remark, :user_id,
+                  :broker_status
+
   belongs_to :branch
   belongs_to :user
   

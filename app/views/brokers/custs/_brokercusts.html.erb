@@ -10,16 +10,7 @@
 			<%= render 'brokers/custs/brokercusts_table_1' %>
 		</div>
 	</div>
-	<div class="span4">
-		<div class="well well-small">
-			<%= render 'brokers/custs/brokercusts_table_2' %>
-		</div>
-	</div>
-	<div class="span4">
-		<div class="well well-small">
-			<%= render 'brokers/custs/brokercusts_table_3' %>
-		</div>
-	</div>
+
 </div>
 <div class="row-fluid">
 	<p>
@@ -38,10 +29,8 @@
 			  <ul class="dropdown-menu">
 					<% if current_user == @broker.user %>
 						<li><%= link_to '经纪关系客户', custs_path %></li>
-						<li><%= link_to '营销产品客户', {:controller => 'custs', :action => 'productcusts_index'}  %></li>
 					<% else %>
 						<li><%= link_to '经纪关系客户', custs_path(:broker_id => @broker) %></li>
-						<li><%= link_to '营销产品客户', {:controller => 'custs', :action => 'productcusts_index', :broker_id => @broker} %></li>
 					<% end %>
 			  </ul>
 			</div>

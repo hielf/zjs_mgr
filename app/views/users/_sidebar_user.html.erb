@@ -5,12 +5,8 @@
 	<ul class="inline">
 		<li><strong>账户状态：</strong></li>
 		<li><%= get_dict_by_id(@user.status).name %></li><br/>
-		<% if !@user.department_id.nil? %>
-		<li><strong>分公司：</strong></li>
-		<li><%= Department.find(@user.department_id).name %></li><br/>
-		<% end %>
 		<% if !Branch.find_by_id(@user.branch_id).nil? %>
-		<li><strong>营业部：</strong></li>
+		<li><strong>分支机构：</strong></li>
 		<li><%= Branch.find(@user.branch_id).name %></li><br/>
 		<% end %>
 	</ul>

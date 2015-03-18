@@ -27,13 +27,5 @@
       <td>存量客户交易量</td>
       <td><%= find_brokerindex(30008, @broker) %></td>
     </tr>
-		<tr>
-      <td>当前有效户数</td>
-			<% if get_dict_by_id(@broker.broker_type).code == 4 %>
-      <td><%= find_brokerindex(70006, @broker).to_i %></td>
-			<% else %>
-			<td><%= find_brokerindex(70005, @broker).to_i %></td>
-			<% end %>
-    </tr>
   </tbody>
 </table>

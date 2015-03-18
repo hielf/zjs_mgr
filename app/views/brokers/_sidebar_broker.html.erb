@@ -12,17 +12,13 @@
 	</ul>
 	<ul class="inline">
 		<li><strong>所属：</strong></li>
-		<li><%= Branch.find(@broker.branch_id).name %></li><br/>
+		<li><%= Branch.find(@broker.branch_id).name if @broker.branch %></li><br/>
 		<li><strong>代码：</strong></li>
 		<li><%= @broker.broker_code %></li><br/>
 		<li><strong>职务：</strong></li>
 		<li><%= (@broker.region_manager) ? "区域经理" : "营销经理" %></li><br/>
 		<li><strong>状态：</strong></li>
 		<li><%= get_dict_by_id(@broker.broker_status).name if @broker.broker_status %></li><br/>
-		<li><strong>年龄：</strong></li>
-		<li><%= @broker.age.to_s %></li><br/>
-		<li><strong>性别：</strong></li>
-		<li><%= get_dict_by_id(@broker.gender).name if @broker.gender %></li><br/>
 		<li><strong>手机：</strong></li>
 		<li><%= @broker.mobile %></li><br/>
 		<li><strong>邮箱：</strong></li>

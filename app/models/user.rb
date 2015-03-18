@@ -6,8 +6,8 @@
 #  id                 :integer(38)     not null, primary key
 #  name               :string(255)
 #  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
+#  created_at         :datetime        not null
+#  updated_at         :datetime        not null
 #  encrypted_password :string(255)
 #  salt               :string(255)
 #  admin              :boolean(1)      default(FALSE)
@@ -17,16 +17,19 @@
 #  status             :integer(38)
 #  user_type          :integer(38)
 #  first_login        :boolean(1)      default(TRUE)
+#  mobile             :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessor   :password
+  attr_accessor   :password, :certificate_num, :bank_account, :role_id
   attr_accessible :name, :email, :password, :usercode, :password_confirmation, :userposition_ids,
-                  :role_ids, :branch_id, :department_id
+                  :role_ids, :branch_id, :department_id, :mobile, :status, :user_type, :certificate_num, 
+                  :bank_account, :role_id
   
   belongs_to :branch
   belongs_to :department
   
+  has_many :brokers
   has_many :notices
   has_many :sessions
   has_many :assignments
@@ -41,10 +44,15 @@ class User < ActiveRecord::Base
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
+  validates :email, presence: true, format: { with: email_regex }, :uniqueness => true
   validates :name,  :presence   => true,
                     :length     => { :maximum => 20 }
+  validates :mobile,  :presence   => true,
+                      :numericality => true,
+                      :length     => { :is => 11 }
   validates :usercode, :presence   => true,
-                       :uniqueness => true
+                       :uniqueness => true,
+                       :length       => { :within => 1..6 }
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 5..20 }

@@ -15,16 +15,6 @@
 	g.column :name => '账户状态', :attribute => 'name', filter: false do |user|
 		Dict.find(user.status).name
 	end
-
-	g.column :name => '所辖分公司', :attribute => 'id', :model => Department,
-					 :detach_with_id => :department_filter, custom_filter: Department.accessible_by(current_ability).map{|dp| [dp.name, dp.id]}  do |user|
-    user.department.name if user.department
-  end
-
-	g.column :name => '所属营业部', :attribute => 'id', :model => Branch, 
-					 :detach_with_id => :branch_filter, custom_filter: Branch.accessible_by(current_ability).map{|br| [br.name, br.id]}  do |user|
-    user.branch.name if user.branch
-  end
 	
 	if can? :manage, User
 	  g.column do |user|

@@ -15,15 +15,7 @@
 			    <div class="tab-pane active" id="1">
 						<%= render 'brokers/custs/brokercusts' %>
 			    </div>
-			    <div class="tab-pane" id="2">
-						<%= render 'brokers/indices/brokerindices' %>
-			    </div>
-					<div class="tab-pane" id="4">
-						<%= render 'brokers/salarys/brokersalary' %>
-			    </div>
-					<div class="tab-pane" id="5">
-						<%= render 'brokers/products/brokerproducts' %>
-					</div>
+\
 					<% if can? :manage, User %>
 					<div class="tab-pane" id="6">
 						<%= render 'brokers/manage/signin_log' %>

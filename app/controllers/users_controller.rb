@@ -1,6 +1,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
   load_and_authorize_resource
+  skip_authorize_resource :only => [:new, :create]
   before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
   # before_filter :correct_user, :only => [:edit, :update]
   # before_filter :admin_user,   :only => :destroy
@@ -10,8 +11,8 @@ class UsersController < ApplicationController
     @department = params[:department]
     # usergrid = User.accessible_by(current_ability, :read)
     @users_grid = initialize_grid(User, 
-              :conditions => {:department_id => Department.accessible_by(current_ability).map{|dp| [dp.id]}}, 
-              :include => [:department, :branch],
+              # :conditions => {:department_id => Department.accessible_by(current_ability).map{|dp| [dp.id]}}, 
+              # :include => [:department, :branch],
               :name => 'users',
               :enable_export_to_csv => true,
               :csv_field_separator => ';',
@@ -38,14 +39,25 @@ class UsersController < ApplicationController
   
   def create
     # raise params[:user].inspect
-    # @user = User.new(params[:user])
-    # if @user.save
-    #   sign_in @user
-    #   redirect_to @user, :flash => { :success => "欢迎注册"}
-    # else  
-    #   @title = "注册"
-    #   render 'new'
-    # end
+    @user = User.new(params[:user])
+    @user.status = get_dict("UserBase.status",1).id
+    @user.brokers.build(:broker_code => params[:user][:usercode], 
+                        :broker_name => params[:user][:name],
+                        :certificate_num => params[:user][:certificate_num],
+                        :bank_account => params[:user][:bank_account],
+                        :mobile => params[:user][:mobile],
+                        :email => params[:user][:email],
+                        :branch_id => 1,
+                        :open_date => Time.now.strftime("%m/%d/%Y"),
+                        :broker_status => get_dict("BrokerBase.status", 1).id)
+    @user.assignments.build(:role_id => Role.find_by_name("普通居间人").id)
+    if @user.save
+      sign_in @user
+      redirect_to root_path, :flash => { :success => "注册成功，欢迎您的加入"}
+    else  
+      @title = "注册"
+      render 'new'
+    end
   end
 
   def edit

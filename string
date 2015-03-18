@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20150317082517_add_id_to_users.rb

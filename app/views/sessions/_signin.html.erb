@@ -10,9 +10,18 @@
 							<%= link_to '取消', root_path, :class => 'btn' %>
 						</p>
 				<% end %>
-						<p class="text-right text-info">
-							<%= link_to "忘记密码？", new_recoverypassword_path %>
-						</p>
+					</div>
+					<div class="row-fluid">
+							<div class="span6">
+								<p class="text-left text-info">
+									<%= link_to "立即注册", new_user_path %>
+								</p>
+							</div>
+							<div class="span6">
+								<p class="text-right text-info">
+									<%= link_to "忘记密码？", new_recoverypassword_path %>
+								</p>
+							</div>
 					</div>
 		</div>
 	</div>
