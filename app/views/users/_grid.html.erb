@@ -12,6 +12,11 @@
     user.name
   end
 
+	g.column :name => '所属分支机构', html: {class: 'hidden-phone'}, :attribute => 'id', :model => Branch, 
+					 :detach_with_id => :branch_filter, custom_filter: Branch.accessible_by(current_ability).map{|br| [br.name, br.id]}  do |user|
+    user.branch.name if user.branch
+  end
+
 	g.column :name => '账户状态', :attribute => 'name', filter: false do |user|
 		Dict.find(user.status).name
 	end

@@ -29,7 +29,9 @@ class User < ActiveRecord::Base
   belongs_to :branch
   belongs_to :department
   
-  has_many :brokers
+  has_one :broker
+  
+  has_many :branches
   has_many :notices
   has_many :sessions
   has_many :assignments
@@ -62,6 +64,7 @@ class User < ActiveRecord::Base
   # default_scope  :order => 'users.usercode' 
   
   scope :valid_user, where(:status => Dict.find_by_dict_type_and_code("UserBase.status", 1) ) 
+  scope :managers, where(:status => Dict.find_by_dict_type_and_code("UserBase.status", 1) ) 
   
   def to_label
     "#{usercode} | #{name}"

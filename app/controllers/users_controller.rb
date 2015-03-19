@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     # usergrid = User.accessible_by(current_ability, :read)
     @users_grid = initialize_grid(User, 
               # :conditions => {:department_id => Department.accessible_by(current_ability).map{|dp| [dp.id]}}, 
-              # :include => [:department, :branch],
+              :include => [:branch],
               :name => 'users',
               :enable_export_to_csv => true,
               :csv_field_separator => ';',
@@ -41,15 +41,15 @@ class UsersController < ApplicationController
     # raise params[:user].inspect
     @user = User.new(params[:user])
     @user.status = get_dict("UserBase.status",1).id
-    @user.brokers.build(:broker_code => params[:user][:usercode], 
-                        :broker_name => params[:user][:name],
-                        :certificate_num => params[:user][:certificate_num],
-                        :bank_account => params[:user][:bank_account],
-                        :mobile => params[:user][:mobile],
-                        :email => params[:user][:email],
-                        :branch_id => 1,
-                        :open_date => Time.now.strftime("%m/%d/%Y"),
-                        :broker_status => get_dict("BrokerBase.status", 1).id)
+    @user.build_broker(:broker_code => params[:user][:usercode], 
+                      :broker_name => params[:user][:name],
+                      :certificate_num => params[:user][:certificate_num],
+                      :bank_account => params[:user][:bank_account],
+                      :mobile => params[:user][:mobile],
+                      :email => params[:user][:email],
+                      :branch_id => Branch.find_by_code("0010").id,
+                      :open_date => Time.now.strftime("%m/%d/%Y"),
+                      :broker_status => get_dict("BrokerBase.status", 1).id)
     @user.assignments.build(:role_id => Role.find_by_name("普通居间人").id)
     if @user.save
       sign_in @user
@@ -70,14 +70,15 @@ class UsersController < ApplicationController
   def update
     @user  = User.find(params[:id])
     @assignments = params[:user][:role_ids]
-    @department = params[:user][:department_id]
+    @branch = params[:user][:branch_id]
     if @assignments.present?
        @user.update_attribute :role_ids, params[:user][:role_ids]
        @user.update_attribute :userposition_ids, params[:user][:userposition_ids]
         redirect_to users_path, :flash => { :success => "用户权限设置成功" }
-    elsif @department.present?
-       @user.update_attribute :department_id, params[:user][:department_id]
-        redirect_to @user, :flash => { :success => "用户所辖分公司设置成功" }
+    elsif @branch.present?
+       @user.update_attribute :branch_id, params[:user][:branch_id]
+       @user.broker.update_attribute :branch_id, params[:user][:branch_id]
+        redirect_to users_path, :flash => { :success => "用户所属分支机构设置成功" }
     else
       if @user.update_attributes(params[:user])
         @user.update_attribute :first_login, false

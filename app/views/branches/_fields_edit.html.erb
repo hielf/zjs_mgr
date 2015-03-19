@@ -1,0 +1,6 @@
+<%= f.input :code, :placeholder => "输入4位数字", :label => '分支机构编码', disabled: true %>
+<%= f.input :name, :label => '分支机构名称' %>
+<%= f.input :department_id, :collection => Department.all, :include_blank => false, :label => '上级机构' %>
+<%= f.input :user_id, :collection => User.managers, :include_blank => false, :label => '主管' %>
+<%= f.input :location, :label => '地址' %>
+<%= f.input :phone, :label => '电话' %>

@@ -1,0 +1,38 @@
+<%= define_grid(@branches_grid) do |g|
+	
+	g.blank_slate  do
+	  "没有记录"
+	end
+	
+  g.column :name => '分支机构代码', :attribute => 'code', filter: false do |branch|
+    branch.code
+  end
+
+  g.column :name => '分支机构名称', :attribute => 'name', :detach_with_id => :name_filter do |branch|
+    branch.name
+  end
+
+  g.column :name => '主管', :attribute => 'location', filter: false do |branch|
+    User.find(branch.user_id).name
+  end
+
+  g.column :name => '地址', :attribute => 'location', filter: false do |branch|
+    branch.name
+  end
+
+  g.column :name => '电话', :attribute => 'phone', filter: false do |branch|
+    branch.name
+  end
+
+	if can? :manage, Branch
+	  g.column do |branch|
+	    link_to('修改', edit_branch_path(branch))
+	  end
+  end
+
+	if can? :read, Branch
+	  g.column do |branch|
+	    link_to('查看', branch_path(branch))
+	  end
+  end
+end -%>

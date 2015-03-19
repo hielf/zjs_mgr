@@ -1,0 +1,3 @@
+<%= f.input :name, as: :hidden, input_html: { value: @user.name } %>
+<%= f.input :usercode, as: :hidden, input_html: { value: @user.usercode } %>
+<%= f.input :branch_id, :collection => Branch.all, :label => "所属分支机构" %>

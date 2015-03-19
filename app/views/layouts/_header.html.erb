@@ -23,6 +23,9 @@
 									<% if can? :manage, Role %>
 										<li><%= link_to "角色设置", roles_path %>
 									<% end %>
+									<% if can? :manage, Branch %>
+										<li><%= link_to "分支机构管理", branches_path %>
+									<% end %>
 								<li class="divider">
 								<li><%= link_to "密码变更", edit_user_path(current_user) %>
 							  </ul>

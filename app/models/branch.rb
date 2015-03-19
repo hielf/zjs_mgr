@@ -3,26 +3,38 @@
 #
 # Table name: branches
 #
-#  id            :integer(4)      not null, primary key
+#  id            :integer(38)     not null, primary key
 #  code          :string(255)
 #  name          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  department_id :integer(4)
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  department_id :integer(38)
 #  supervisor    :string(255)
 #  location      :string(255)
 #  phone         :string(255)
+#  user_id       :integer(38)
 #
 
 class Branch < ActiveRecord::Base
-  attr_accessible :code, :name
+  attr_accessible :code, :name, :department_id, :location, :phone, :user_id
   belongs_to :department
+  belongs_to :user
   
   has_many :users
   has_many :brokers
   has_many :branchindices
   has_many :custs
   
+  validates :code,  :presence   => true,
+                    :numericality => true,
+                    :length     => { :is => 4 }, 
+                    :uniqueness => true
+  validates :name,  :presence   => true,
+                    :length     => { :maximum => 20 },
+                    :uniqueness => true
+  validates :department_id,  :presence   => true
+  validates :user_id, :presence   => true
+
   default_scope   :order => 'branches.code' 
   
   def to_label

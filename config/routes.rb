@@ -42,7 +42,7 @@ Cmwp::Application.routes.draw do
       get 'dept_index', :on => :member
     end
   end
-  resources :branches, :only => [:index, :show] do
+  resources :branches do
     get 'typebrokers', :on => :member
     resources :branchindices do
       get 'branch_index', :on => :member

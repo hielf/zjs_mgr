@@ -49,8 +49,8 @@ class Ability
 
     elsif user.has_role? :总部管理
       can :access_user_first_page, :all
-      can :read, Department
-      can :read, Branch
+      can :manage, Department
+      can :manage, Branch
       can :manage, User
       can :manage, Role
       can :manage, Userposition

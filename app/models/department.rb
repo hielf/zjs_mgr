@@ -14,7 +14,7 @@
 #
 
 class Department < ActiveRecord::Base
-  attr_accessible :code, :name
+  attr_accessible :code, :name, :supervisor, :location, :phone
   
   has_many   :users
   has_many   :branches

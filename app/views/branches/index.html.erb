@@ -1,1 +1,31 @@
-<%= render "branches/sidebar_brokertype" %>
+<%= render :partial => 'grid' %>
+
+<div class="row-fluid">
+	<div class="span12 well">
+		<div class="row-fluid">
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="row-fluid">
+						<div class="span4">
+							分支机构：
+						</div>
+						<div class="span8">
+							<%= grid_filter @branches_grid, :name_filter  %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="form-actions">
+						<button class="btn btn-primary wg-external-submit-button" data-grid-name="branches">查询</button>
+						<% if can? :manage, Branch %>
+							<%= link_to '新增', new_branch_path, :class => 'btn btn-success pull-right' %>
+						<% end %>
+					</div>	
+				</div>
+			</div>	
+		</div>
+</div>
+<%= render_grid(@branches_grid) %>

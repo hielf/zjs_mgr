@@ -3,7 +3,7 @@
 		<div class="tabbable tabs">
 		  <ul class="nav nav-tabs">
 		    <li class="active"><a href="#1" data-toggle="tab">设置角色</a></li>
-		    <li><a href="#2" data-toggle="tab">设置分公司</a></li>
+		    <li><a href="#2" data-toggle="tab">设置分支机构</a></li>
 		  </ul>
 		  <div class="tab-content">
 		    <div class="tab-pane active" id="1">
@@ -21,7 +21,7 @@
 		    <div class="tab-pane" id="2">
 					<div class="well">
 						<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-							<%= render 'department_fields', :f => f %>
+							<%= render 'branch_fields', :f => f %>
 						<div class="form-actions">
 							<% if can? :manage, User %>
 							<%= f.submit "确认", :class => 'btn btn-primary' %>

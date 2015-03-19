@@ -12,8 +12,8 @@ module ApplicationHelper
   end
   
   def logo
-    image_tag("logo_ht.png", :alt => "营销综合管理" )
-    # "海通证券"
+    # image_tag("logo_ht.png", :alt => "营销综合管理" )
+    "证津所-居间人管理系统"
   end
   
   def link_to_add_fields(name, f, association)

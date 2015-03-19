@@ -9,6 +9,9 @@
 # 初始化admin
 # User.find_or_create_by_usercode({:id=>10000,:name=>"admin",:email => "admin@test.org",:encrypted_password=>"dbdfa54d5174036a0a8f0b21156213dbdda7e97d0627b6a72f6b8fc1033ccdfd",:salt=>"c0ce517b87425898eea8f4a1d15267e927f7405f3d790775fffffdca35fd0fec",:usercode=>"admin",:status=>3234,:first_login=>0}, :without_protection => true)
 
+#初始化总部
+Department.find_or_create_by_code({:name=>"总部",:code => "0000",:supervisor=>"陈永卿",:location=>"上海市",:phone=>"021-"})
+
 # 初始化迁移show_list数据
 Dict.find_or_create_by_name_and_dict_type_and_code({:id=>3234,:name=>'正常',:dict_type=>'UserBase.status',:code=>1}, :without_protection => true)
 Dict.find_or_create_by_name_and_dict_type_and_code({:id=>3235,:name=>'已删除',:dict_type=>'UserBase.status',:code=>2}, :without_protection => true)

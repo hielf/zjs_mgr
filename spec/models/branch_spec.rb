@@ -31,14 +31,15 @@ end
 #
 # Table name: branches
 #
-#  id            :integer(4)      not null, primary key
+#  id            :integer(38)     not null, primary key
 #  code          :string(255)
 #  name          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  department_id :integer(4)
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  department_id :integer(38)
 #  supervisor    :string(255)
 #  location      :string(255)
 #  phone         :string(255)
+#  user_id       :integer(38)
 #
 
