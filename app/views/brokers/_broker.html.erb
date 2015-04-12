@@ -7,18 +7,24 @@
 			<div class="tabbable tabs">
 			  <ul class="nav nav-tabs" id="myTab">
 			    <li class="active"><a href="#1" data-toggle="tab">客户情况</a></li>
-			    <li><a href="#2" data-toggle="tab">我的积分</a></li>
-					<li><a href="#4" data-toggle="tab">我的收入</a></li>
-					<% if can? :manage, User %>
-						<li><a href="#6" data-toggle="tab">签到情况</a></li>
-					<% end %>
+			    <li><a href="#2" data-toggle="tab">最新变动</a></li>
+					<li><a href="#3" data-toggle="tab">收入报酬</a></li>
+				<% if can? :manage, User %>
+					<li><a href="#4" data-toggle="tab">签到情况</a></li>
+				<% end %>
 			  </ul>
 			  <div class="tab-content">
 			    <div class="tab-pane active" id="1">
 						<%= render 'brokers/custs/brokercusts' %>
 			    </div>
+					<div class="tab-pane" id="2">
+						<%= render 'brokers/events/brokerevents' %>
+					</div>
+					<div class="tab-pane" id="3">
+						<%= render 'brokers/salarys/brokersalary' %>
+					</div>
 					<% if can? :manage, User %>
-					<div class="tab-pane" id="6">
+					<div class="tab-pane" id="4">
 						<%= render 'brokers/manage/signin_log' %>
 					</div>
 					<% end %>

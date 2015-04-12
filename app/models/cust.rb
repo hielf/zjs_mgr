@@ -3,18 +3,23 @@ class Cust < ActiveRecord::Base
   attr_accessible :address, :assessment_date, :branch_id, :capital_account, :capital_account_type, :close_date,
                   :cust_name, :identification_number, :identification_type, :mobile, :open_date, :phone, :status,
                   :valid_date, :valid_date_crop, :zip_code, :birthday
-  
+
   belongs_to :branch
   has_many   :custbrokerrels
   has_many   :custbrokerproductrels
   has_many   :brokerfavcusts
   has_many   :custindices
   has_many   :months, :through => :custindices
-  
+
+  scope :invest_custs, where("instr(capital_account_type,1) > 0")
+  scope :trader_custs, where("instr(capital_account_type,2) > 0")
+  scope :finance_custs, where("instr(capital_account_type,3) > 0")
+
+
   def is_cust?(cust_sym)
     self.any? { |c| c.capital_account == cust_sym }
   end
-  
+
 end
 # == Schema Information
 #
@@ -41,4 +46,3 @@ end
 #  updated_at            :datetime        not null
 #  birthday              :datetime
 #
-

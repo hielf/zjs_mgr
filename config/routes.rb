@@ -15,6 +15,9 @@ Cmwp::Application.routes.draw do
   resources :custs do
     get 'productcusts_index', :on => :collection
     get 'cust_detail_index', :on => :collection
+    get 'invest_custs_index', :on => :collection
+    get 'finance_custs_index', :on => :collection
+    get 'trader_custs_index', :on => :collection
   end
   resources :products do
     member do
@@ -27,7 +30,7 @@ Cmwp::Application.routes.draw do
   resources :channelurls do
     collection do
       get 'get_brokers', to: "channelurls#get_brokers"
-    end 
+    end
   end
   resources :workflowunderways do
     resources :workflow_steps, :custservvisits
@@ -48,7 +51,8 @@ Cmwp::Application.routes.draw do
       get 'branch_index', :on => :member
     end
   end
-  resources :brokers, :only => [:index, :show] do
+  resources :brokers do
+    get 'remark', :on => :collection
     resources :brokerindices do
       get 'broker_index', :on => :member
     end
@@ -68,18 +72,18 @@ Cmwp::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
-  match '/signup',  :to => 'users#new' 
+  match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'  
-  # match '/pwd',     :to => 'recoverypassword#new' 
+  match '/signout', :to => 'sessions#destroy'
+  # match '/pwd',     :to => 'recoverypassword#new'
 
   # scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
   #   resources :sessions
   # end
-  
-  
+
+
   # match 'categories' => 'categories#show', :via => :get
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

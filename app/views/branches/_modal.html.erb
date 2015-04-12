@@ -1,0 +1,16 @@
+<div id="myModal<%=broker.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">提交备注</h3>
+  </div>
+  <div class="modal-body">
+    <%= simple_form_for broker, :html => { :class => 'form-horizontal' } do |f| %>
+      <%= render 'fields_edit_broker', :f => f %>
+    <% end %>
+    <p class="muted"><small><%= I18n.localize(broker.updated_at, :format => :long) %></small></p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "确认", {:controller => 'brokers', :action => 'remark', :broker_id => broker.id}, :class => 'btn btn-primary' %>
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+  </div>
+</div>

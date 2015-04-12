@@ -25,6 +25,7 @@ group :assets do
 end
 
 # gem 'jquery-placeholder-rails'
+gem 'carrierwave'
 gem 'will_paginate', '~> 3.0.3'
 gem 'bootstrap-will_paginate', '~> 0.0.6'
 gem 'jquery-rails'
@@ -39,7 +40,7 @@ gem "wice_grid", '3.4.10'
 gem 'time_difference', '~> 0.3.2'
 # gem "simple_calendar", github: "excid3/simple_calendar", branch: "1.0"
 gem "watu_table_builder", :require => "table_builder"
-gem 'datetimepicker-rails', :require => 'datetimepicker-rails', 
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails',
                             :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
 # gem 'simple-navigation'
 

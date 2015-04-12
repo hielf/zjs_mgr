@@ -1,0 +1,26 @@
+<%= grid(@brokers_grid) do |g|
+
+	g.blank_slate  do
+	  '<p class="text-center muted">没有记录</p>'.html_safe
+	end
+
+  g.column :name => '姓名' do |broker|
+    link_to(broker.broker_name, broker_path(broker))
+  end
+
+  g.column :name => '在职日期' do |broker|
+    broker.open_date + ' - '.html_safe + broker.close_date.to_s
+  end
+
+  g.column :name => '备注' do |broker|
+    broker.remark[0..15] unless broker.remark.nil?
+		render 'modal', :broker => broker
+  end
+
+	if can? :manage, Broker
+	  g.column do |broker|
+	    # link_to('备注', edit_broker_path(broker))
+			link_to('备注', "#myModal"+broker.id.to_s, :data => {:toggle=>"modal"})
+		end
+  end
+end -%>

@@ -2,12 +2,12 @@
 class BranchesController < ApplicationController
   load_and_authorize_resource
   before_filter :authenticate
-  
+
   def index
-    @branches_grid = initialize_grid(Branch, 
+    @branches_grid = initialize_grid(Branch,
               :order => 'branches.code',
               # :order_direction => 'desc',
-              :conditions => {:id => Branch.accessible_by(current_ability).map{|br| [br.id]}}, 
+              :conditions => {:id => Branch.accessible_by(current_ability).map{|br| [br.id]}},
               # :include => [:branch],
               :name => 'branches',
               :enable_export_to_csv => true,
@@ -23,6 +23,12 @@ class BranchesController < ApplicationController
     @title      = @branch.name
     @father_department = @branch.department
     @brokers    = @branch.brokers
+
+    @brokers_grid = initialize_grid(Broker,
+              :conditions => { :id => @brokers.map{|b| b.id} },
+              # :include => [:custindices],
+              # :name => 'brokerfavcusts',
+              :per_page => 5)
   end
 
   def new
@@ -34,7 +40,7 @@ class BranchesController < ApplicationController
     @branch = Branch.new(params[:branch])
     if @branch.save
       redirect_to branches_path, :flash => { :success => "分支机构添加成功"}
-    else  
+    else
       @title = "新建分支机构"
       render 'new'
     end
@@ -44,14 +50,14 @@ class BranchesController < ApplicationController
     @branch  = Branch.find(params[:id])
     @title = "分支机构设置"
   end
-  
+
  def update
     @branch  = Branch.find(params[:id])
     if @branch.update_attributes(params[:branch])
       redirect_to branches_path, :flash => { :success => "更新成功" }
-    else  
+    else
       @title = "分支机构设置"
       render 'edit'
-    end 
+    end
  end
 end

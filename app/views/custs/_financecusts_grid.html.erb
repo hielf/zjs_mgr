@@ -1,0 +1,24 @@
+<%= define_grid(@finance_custs_grid) do |g|
+
+	g.blank_slate  do
+	  "没有记录"
+	end
+
+	g.column :name => '分支机构', :attribute => 'id', :model => Branch, html: {class: 'hidden-phone'}, filter: false do |cust|
+	  cust.branch.name if cust.branch
+	end
+
+  g.column :name => '客户姓名', :attribute => 'cust_name', :detach_with_id => :name_filter do |cust|
+    link_to(cust.cust_name, cust_path(cust))
+  end
+
+	g.column :name => '开户日期', :attribute => 'open_date', html: {class: 'hidden-phone'}, :detach_with_id => :open_date_filter do |cust|
+    cust.open_date.to_time.strftime("%F") if cust.open_date
+  end
+
+	g.column :name => '挂接日期', :attribute => 'id', html: {class: 'hidden-phone'}, :model => Custbrokerrel,
+					 filter: false  do |cust|
+	  cust.custbrokerrels.first.rel_date.to_time.strftime("%F") if cust.custbrokerrels.first.rel_date
+	end
+
+end -%>

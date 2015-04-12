@@ -26,8 +26,14 @@
 	</ul>
 	<ul class="common-divider"></ul>
 	<!-- <ul class="inline"> -->
-	<% if User.find(@broker.user_id) == current_user %>
-		<p class="text-center"><%= link_to '新建工作', new_workflowunderway_path, :class => 'btn btn-success' %></p>
-	<% end %>
-	<!-- </ul> -->
+	<ul class="inline">
+		<li><strong>昨日返佣金额：</strong></li>
+		<li>0 元</li><br/>
+		<li><strong>当前账户余额：</strong></li>
+		<li>0 元</li><br/>
+		<li><strong>累计总金额：</strong></li>
+		<li>0 元</li><br/>
+	</ul>
+	<ul class="common-divider"></ul>
+	<p class="text-center"><%= link_to '立即提现', new_workflowunderway_path, :class => 'btn btn-success' %></p>
 </div>
