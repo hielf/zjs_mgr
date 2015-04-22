@@ -4,14 +4,14 @@ class Brokerfavcust < ActiveRecord::Base
   belongs_to :broker
   belongs_to :cust
 end
+
 # == Schema Information
 #
 # Table name: brokerfavcusts
 #
-#  id         :integer(38)     not null, primary key
-#  broker_id  :integer(38)
-#  cust_id    :integer(38)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  id         :integer          not null, primary key
+#  broker_id  :integer
+#  cust_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
-

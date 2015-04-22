@@ -2,14 +2,14 @@
 #
 # Table name: branchindices
 #
-#  id         :integer(38)     not null, primary key
-#  branch_id  :integer(38)
+#  id         :integer          not null, primary key
+#  branch_id  :integer
 #  month_id   :string(255)
-#  indextype  :integer(38)
+#  indextype  :integer
 #  occursum   :decimal(, )
 #  remark     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Branchindex < ActiveRecord::Base

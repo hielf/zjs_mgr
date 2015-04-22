@@ -31,17 +31,17 @@ describe Department do
   end
   
 end
+
 # == Schema Information
 #
 # Table name: departments
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer          not null, primary key
 #  code       :string(255)
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #  supervisor :string(255)
 #  location   :string(255)
 #  phone      :string(255)
 #
-

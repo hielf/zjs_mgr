@@ -27,7 +27,15 @@
 		<li><%= link_to @broker.url, "#{@broker.url}", :target => "_blank" %></li><br/>
 	</ul>
 	<ul class="common-divider"></ul>
-	<!-- <ul class="inline"> -->
+	<ul class="inline">
+		<li><strong>开户银行：</strong></li>
+		<li><%= @broker.bank %></li><br/>
+		<li><strong>支行：</strong></li>
+		<li><%= @broker.serv_bank %></li><br/>
+		<li><strong>账户：</strong></li>
+		<li><%= @broker.bank_account %></li><br/>
+	</ul>
+	<ul class="common-divider"></ul>
 	<ul class="inline">
 		<li><strong>昨日返佣金额：</strong></li>
 		<li>0 元</li><br/>

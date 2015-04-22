@@ -34,25 +34,25 @@ class Custservvisit < ActiveRecord::Base
   end
   
 end
+
 # == Schema Information
 #
 # Table name: custservvisits
 #
-#  id                  :integer(38)     not null, primary key
-#  cust_id             :integer(38)
+#  id                  :integer          not null, primary key
+#  cust_id             :integer
 #  cust_name           :string(255)
 #  plan_location       :string(255)
 #  plan_date           :datetime
 #  visit_date          :datetime
 #  visit_location      :string(255)
 #  attchment_file      :string(255)
-#  user_id             :integer(38)
-#  assit_user_id       :integer(38)
-#  status              :integer(38)
+#  user_id             :integer
+#  assit_user_id       :integer
+#  status              :integer
 #  visit_content       :string(255)
 #  memo                :string(255)
-#  created_at          :datetime        not null
-#  updated_at          :datetime        not null
-#  workflowunderway_id :integer(38)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  workflowunderway_id :integer
 #
-

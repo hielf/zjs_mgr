@@ -71,7 +71,7 @@ gem 'capistrano', '~> 2.15'
 group :development do
   gem 'rspec-rails', '2.8.1'
   # gem 'annotate', '2.4.0'
-  gem 'annotate', '~> 2.4.1.beta'
+  gem 'annotate', '~> 2.6.6'
   gem 'faker', '1.0.1'
   gem 'better_errors'
   gem 'binding_of_caller'

@@ -13,13 +13,13 @@ class CustsController < ApplicationController
     end
     @custs_grid = initialize_grid(Cust,
               :include => [:branch, :custbrokerrels],
-              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? ", @broker ],
+              :conditions => {:branch_id => Branch.accessible_by(current_ability).map{|br| [br.id]}},
               :name => 'custs',
-              # :enable_export_to_csv => true,
-              # :csv_field_separator => ';',
-              # :csv_file_name => '导出',
+              :enable_export_to_csv => true,
+              :csv_field_separator => ';',
+              :csv_file_name => '导出',
               :per_page => 20)
-    @title = "我的客户"
+    @title = "客户列表"
     export_grid_if_requested('custs' => 'grid')
   end
 

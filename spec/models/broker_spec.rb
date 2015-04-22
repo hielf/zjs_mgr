@@ -3,15 +3,16 @@ require 'spec_helper'
 describe Broker do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+
 # == Schema Information
 #
 # Table name: brokers
 #
-#  id                   :integer(38)     not null, primary key
+#  id                   :integer          not null, primary key
 #  broker_code          :string(255)
 #  broker_name          :string(255)
-#  branch_id            :integer(38)
-#  age                  :integer(38)
+#  branch_id            :integer
+#  age                  :integer
 #  open_date            :string(255)
 #  close_date           :string(255)
 #  certificate_num      :string(255)
@@ -39,20 +40,22 @@ end
 #  broker_qualify       :string(255)
 #  personnel_manning    :string(255)
 #  remark               :text
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  avatar               :string(255)
-#  broker_type          :integer(38)
-#  user_id              :integer(38)
-#  region_manager       :boolean(1)
-#  gender               :integer(38)
-#  broker_level         :integer(38)
-#  broker_status        :integer(38)
-#  jobstatus            :integer(38)
+#  broker_type          :integer
+#  user_id              :integer
+#  region_manager       :boolean
+#  gender               :integer
+#  broker_level         :integer
+#  broker_status        :integer
+#  jobstatus            :integer
 #  user_code            :string(255)
-#  certificate_type     :integer(38)
+#  certificate_type     :integer
 #  risk_balance         :decimal(, )
-#  broker_degree        :integer(38)
-#  zqbz                 :integer(38)
+#  broker_degree        :integer
+#  zqbz                 :integer
+#  url                  :string(255)
+#  bank                 :string(255)
+#  serv_bank            :string(255)
 #
-

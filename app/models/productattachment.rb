@@ -3,17 +3,17 @@ class Productattachment < ActiveRecord::Base
 
   belongs_to		:product
 end
+
 # == Schema Information
 #
 # Table name: productattachments
 #
-#  id          :integer(38)     not null, primary key
-#  product_id  :integer(38)
+#  id          :integer          not null, primary key
+#  product_id  :integer
 #  file_name   :string(255)
 #  file_type   :string(255)
 #  file_binary :binary
-#  order       :integer(38)
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
+#  order       :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
-

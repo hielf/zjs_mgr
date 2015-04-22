@@ -18,15 +18,15 @@ class Notice < ActiveRecord::Base
   end
 
 end
+
 # == Schema Information
 #
 # Table name: notices
 #
-#  id         :integer(38)     not null, primary key
+#  id         :integer          not null, primary key
 #  title      :string(255)
 #  content    :text
-#  user_id    :integer(38)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
-

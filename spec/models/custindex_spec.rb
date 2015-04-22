@@ -3,13 +3,14 @@ require 'spec_helper'
 describe Custindex do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+
 # == Schema Information
 #
 # Table name: custindices
 #
-#  id                   :integer(38)     not null, primary key
-#  cust_id              :integer(38)
-#  month_id             :integer(38)
+#  id                   :integer          not null, primary key
+#  cust_id              :integer
+#  month_id             :integer
 #  total_asset          :decimal(, )
 #  stock_asset          :decimal(, )
 #  rzrq_end_asset       :decimal(, )
@@ -24,11 +25,10 @@ end
 #  stock_commis         :decimal(, )
 #  rzrq_g_commis        :decimal(, )
 #  rzrq_j_commis        :decimal(, )
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  pure_total_income    :decimal(, )
 #  pure_interest_psr    :decimal(, )
 #  pure_interest_gh     :decimal(, )
 #  pure_interest_krb    :decimal(, )
 #
-

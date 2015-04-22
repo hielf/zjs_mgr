@@ -7,17 +7,17 @@ class Salary < ActiveRecord::Base
   # default_scope :order => 'salaries.month_id DESC'
   
 end
+
 # == Schema Information
 #
 # Table name: salaries
 #
-#  id         :integer(38)     not null, primary key
-#  month_id   :integer(38)
-#  indextype  :integer(38)
-#  broker_id  :integer(38)
+#  id         :integer          not null, primary key
+#  month_id   :integer
+#  indextype  :integer
+#  broker_id  :integer
 #  occursum   :decimal(, )
 #  remark     :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
-

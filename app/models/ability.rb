@@ -4,9 +4,9 @@ class Ability
 
   def initialize(user)
     user ||= User.new # in case of guest
-    
+
     alias_action :create, :read, :update, :destroy, :to => :crud
-    
+
     if user.has_role? :系统管理员
       can :manage, :all
       can :access_user_first_page, :all
@@ -28,7 +28,7 @@ class Ability
       can :read, Channel
       can :create, Channelurl
       can :read, Notice
-      
+
     # elsif user.has_role? :分公司管理
     #   can :access_user_first_page, :all
     #   can :read, Department, :id => user.department_id
@@ -69,13 +69,14 @@ class Ability
       can :create, Notice
       can :destroy, Notice
       can :read, Systemtasklog
-      
+
     elsif user.has_role? :普通居间人
       can :access_broker_first_page, :all
       can :read, Branch, :id => user.branch_id
       can :read, User,   :id => user.id
       can :update, User,   :id => user.id
       can :read, Broker, :id => Broker.find_by_user_id(user.id).id
+      can :update, Broker, :id => Broker.find_by_user_id(user.id).id
       can :crud, Custservvisit
       can :crud, Workflowunderway
       can :read, Workflowhistory
@@ -99,12 +100,12 @@ class Ability
     #     can :read, :all
     #   end
     #
-    # The first argument to `can` is the action you are giving the user 
+    # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
     #
-    # The second argument is the resource the user can perform the action on. 
+    # The second argument is the resource the user can perform the action on.
     # If you pass :all it will apply to every resource. Otherwise pass a Ruby
     # class of the resource.
     #

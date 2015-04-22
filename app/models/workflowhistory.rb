@@ -7,16 +7,16 @@ class Workflowhistory < ActiveRecord::Base
   
   accepts_nested_attributes_for :custservvisit
 end
+
 # == Schema Information
 #
 # Table name: workflowhistories
 #
-#  id          :integer(38)     not null, primary key
-#  workflow_id :integer(38)
-#  user_id     :integer(38)
+#  id          :integer          not null, primary key
+#  workflow_id :integer
+#  user_id     :integer
 #  content     :string(255)
 #  remark      :string(255)
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
-

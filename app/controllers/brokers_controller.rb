@@ -60,12 +60,22 @@ class BrokersController < ApplicationController
     render 'categories/search'
   end
 
+  def edit
+    @broker  = Broker.find(params[:id])
+    @title = "个人资料"
+  end
+
   def update
     @broker = Broker.find(params[:id])
     @branch = @broker.branch
   	# @broker.update_attribute :remark, (params[:remark])
     if @broker.update_attributes(params[:broker])
-      redirect_to branch_path(@branch), :flash => { :success => "信息更新成功" }
+      case can? :access_broker_first_page, :all
+      when true
+        redirect_to broker_path(@broker), :flash => { :success => "信息更新成功" }
+      when false
+        redirect_to branch_path(@branch), :flash => { :success => "信息更新成功" }
+      end
     end
   end
 
