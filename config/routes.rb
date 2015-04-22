@@ -75,6 +75,7 @@ Cmwp::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/terms',   :to => redirect('/public/terms/users_agreement.pdf')
   # match '/pwd',     :to => 'recoverypassword#new'
 
   # scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do

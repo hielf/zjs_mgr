@@ -12,8 +12,8 @@ module ApplicationHelper
   end
 
   def logo
-    # image_tag("logo_ht.png", :alt => "营销综合管理" )
-    "证津所-居间人管理系统"
+    image_tag("logo_molstr.png", :alt => "居间人管理系统", :size => "58x23" )
+    # "居间人管理系统"
   end
 
   def link_to_add_fields(name, f, association)

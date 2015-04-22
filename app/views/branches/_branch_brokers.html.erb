@@ -3,6 +3,10 @@
 	g.blank_slate  do
 	  '<p class="text-center muted">没有记录</p>'.html_safe
 	end
+	
+	g.column do |broker|
+		render 'modal', :broker => broker
+  end
 
   g.column :name => '姓名' do |broker|
     link_to(broker.broker_name, broker_path(broker))
@@ -12,9 +16,12 @@
     broker.open_date + ' - '.html_safe + broker.close_date.to_s
   end
 
+	g.column :name => '电话' do |broker|
+    broker.mobile if broker.mobile?
+  end
+
   g.column :name => '备注' do |broker|
     broker.remark[0..15] unless broker.remark.nil?
-		render 'modal', :broker => broker
   end
 
 	if can? :manage, Broker

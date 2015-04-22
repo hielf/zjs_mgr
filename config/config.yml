@@ -1,11 +1,17 @@
 development:
-  channel_url_generator: http://jsonip.com
-  channel_url_function: ip
+  url_generator: http://www.molstr.com/users/sign_up?broker_id=
+  url_shorter: http://dwz.cn/create.php
+  url_params: url
+  url_res: tinyurl
 
 test:
-  channel_url_generator: http://188.188.114.15:8082/CRH-KH8201.action?
-  channel_url_function: short_url
+  url_generator: http://www.molstr.com/users/sign_up?broker_id=
+  url_shorter: http://urlc.cn/api.php
+  url_params: turl
+  url_res: tinyurl
 
 production:
-  channel_url_generator: http://188.188.114.15:8082/CRH-KH8201.action?
-  channel_url_function: short_url
+  url_generator: http://www.molstr.com/users/sign_up?broker_id=
+  url_shorter: http://urlc.cn/api.php
+  url_params: turl
+  url_res: tinyurl

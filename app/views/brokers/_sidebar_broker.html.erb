@@ -23,6 +23,8 @@
 		<li><%= @broker.mobile %></li><br/>
 		<li><strong>邮箱：</strong></li>
 		<li><%= mail_to @broker.email %></li><br/>
+		<li><strong>网址：</strong></li>
+		<li><%= link_to @broker.url, "#{@broker.url}", :target => "_blank" %></li><br/>
 	</ul>
 	<ul class="common-divider"></ul>
 	<!-- <ul class="inline"> -->

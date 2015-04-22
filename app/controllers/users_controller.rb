@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     @users = User.order("name").paginate(:page => params[:page]).per_page(20)
     @department = params[:department]
     # usergrid = User.accessible_by(current_ability, :read)
-    @users_grid = initialize_grid(User, 
-              # :conditions => {:department_id => Department.accessible_by(current_ability).map{|dp| [dp.id]}}, 
+    @users_grid = initialize_grid(User,
+              # :conditions => {:department_id => Department.accessible_by(current_ability).map{|dp| [dp.id]}},
               :include => [:branch],
               :name => 'users',
               :enable_export_to_csv => true,
@@ -36,12 +36,12 @@ class UsersController < ApplicationController
     @user  = User.new
     @title = "注册"
   end
-  
+
   def create
     # raise params[:user].inspect
     @user = User.new(params[:user])
     @user.status = get_dict("UserBase.status",1).id
-    @user.build_broker(:broker_code => params[:user][:usercode], 
+    @user.build_broker(:broker_code => params[:user][:usercode],
                       :broker_name => params[:user][:name],
                       :certificate_num => params[:user][:certificate_num],
                       :bank_account => params[:user][:bank_account],
@@ -51,10 +51,19 @@ class UsersController < ApplicationController
                       :open_date => Time.now.strftime("%m/%d/%Y"),
                       :broker_status => get_dict("BrokerBase.status", 1).id)
     @user.assignments.build(:role_id => Role.find_by_name("普通居间人").id)
+
     if @user.save
+      @broker = @user.broker
+      @longurl = APP_CONFIG['url_generator']+@broker.id.to_s
+      a = { APP_CONFIG['url_params'] => @longurl }
+      x = Net::HTTP.post_form(URI.parse(APP_CONFIG['url_shorter']), a)
+      @tinyurl = JSON.parse(x.body)[APP_CONFIG['url_res']]
+      @broker.url = @tinyurl
+      @broker.update_attribute :url, @tinyurl
+
       sign_in @user
       redirect_to root_path, :flash => { :success => "注册成功，欢迎您的加入"}
-    else  
+    else
       @title = "注册"
       render 'new'
     end
@@ -66,7 +75,7 @@ class UsersController < ApplicationController
     @title = "用户设置"
     @userpositions = Userposition.all
   end
-  
+
   def update
     @user  = User.find(params[:id])
     @assignments = params[:user][:role_ids]
@@ -86,27 +95,27 @@ class UsersController < ApplicationController
            format.html { redirect_to @user, :flash => { :success => "用户设置成功" } }
            format.js
         end
-      else  
+      else
         @title = "用户设置"
         render 'edit'
       end
     end
   end
-    
+
   def destroy
     # User.find(params[:id]).destroy
     @user.destroy
     # flash[:success] = "用户已删除"
     redirect_to users_path, :flash => { :success => "用户已删除" }
   end
-  
-  private 
-  
+
+  private
+
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
-    
+
     def admin_user
       @user = User.find(params[:id])
       redirect_to(root_path) if !current_user.admin? || current_user?(@user)

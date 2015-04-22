@@ -8,3 +8,4 @@
 <br/>
 <%= f.input :certificate_num, :label => '身份证号' %>
 <%= f.input :bank_account, :label => '银行账号' %>
+<%= f.input :terms_of_service, as: :boolean, :label => "&nbsp;".html_safe, :input_html => { :checked => true }, :inline_label => content_for(:the_links) %>
