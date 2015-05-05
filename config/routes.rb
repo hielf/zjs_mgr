@@ -18,6 +18,7 @@ Cmwp::Application.routes.draw do
     get 'invest_custs_index', :on => :collection
     get 'finance_custs_index', :on => :collection
     get 'trader_custs_index', :on => :collection
+    get 'custrel', :on => :member
   end
   resources :products do
     member do

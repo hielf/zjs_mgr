@@ -1,0 +1,33 @@
+<table class="table table-striped table-bordered table-condensed">
+  <tbody>
+    <tr>
+      <td><strong>提成净佣金：</strong></td>
+      <td colspan="5"><%= get_num(1001) %></td>
+    </tr>
+		<tr>
+			<td><strong>总成交量：</strong></td>
+      <td colspan="5"><%= get_num(2001) %></td>
+		</tr>
+    <tr>
+      <td><strong>业绩提成：</strong></td>
+      <td colspan="5"><%= get_num(3001) %></td>
+    </tr>
+		<tr class="hidden-phone">
+			<td><strong>薪资调整发：</strong></td>
+      <td colspan="2"><%= get_num(5001) %></td>
+			<td><strong>薪资调整扣：</strong></td>
+      <td colspan="2"><%= get_num(5002) %></td>
+		</tr>
+		<tr>
+		<tr class="hidden-phone">
+			<td><strong>展业合规金留存：</strong></td>
+      <td colspan="2"><%= get_num(4001) %></td>
+			<td><strong>展业合规金返还：</strong></td>
+      <td colspan="2"><%= get_num(4002) %></td>
+		</tr>
+		<tr>
+			<td><strong>税前工资：</strong></td>
+      <td colspan="5"><%= get_num(3001) + get_num(5001) - get_num(5002) + get_num(4002) - get_num(4001)  %></td>
+		</tr>
+  </tbody>
+</table>

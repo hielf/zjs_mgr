@@ -12,8 +12,8 @@ class CustsController < ApplicationController
       @broker = Broker.find_by_user_id(current_user.id)
     end
     @custs_grid = initialize_grid(Cust,
-              :include => [:branch, :custbrokerrels],
-              :conditions => {:branch_id => Branch.accessible_by(current_ability).map{|br| [br.id]}},
+              :include => [:custbrokerrels],
+              # :conditions => {:branch_id => Branch.accessible_by(current_ability).map{|br| [br.id]}},
               :name => 'custs',
               :enable_export_to_csv => true,
               :csv_field_separator => ';',
@@ -21,6 +21,16 @@ class CustsController < ApplicationController
               :per_page => 20)
     @title = "客户列表"
     export_grid_if_requested('custs' => 'grid')
+  end
+
+  def update
+    @cust = Cust.find params[:id]
+    if params[:cust][:broker_ids].present?
+      @cust.update_attribute :broker_ids, params[:cust][:broker_ids]
+      redirect_to custs_path, :flash => { :success => "客户关系设置成功" }
+    else @cust.update_attributes(params[:cust])
+      redirect_to custs_path, :flash => { :success => "更新成功" }
+    end
   end
 
   def productcusts_index
@@ -121,5 +131,10 @@ class CustsController < ApplicationController
               :per_page => 20)
     @title = "操盘手客户"
     export_grid_if_requested('tradercusts' => 'grid')
+  end
+
+  def custrel
+    @cust = Cust.find params[:id]
+    @title = @cust.capital_account + " - " + @cust.cust_name
   end
 end

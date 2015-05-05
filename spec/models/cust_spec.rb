@@ -9,7 +9,7 @@ end
 # Table name: custs
 #
 #  id                    :integer          not null, primary key
-#  capital_account       :string(10)
+#  capital_account       :string(11)
 #  cust_name             :string(255)
 #  identification_type   :integer
 #  identification_number :string(255)
@@ -17,7 +17,6 @@ end
 #  phone                 :string(255)
 #  mobile                :string(255)
 #  zip_code              :string(255)
-#  branch_id             :integer
 #  status                :integer
 #  capital_account_type  :integer
 #  open_date             :string(8)
@@ -28,4 +27,5 @@ end
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  birthday              :datetime
+#  cust_type             :string(255)
 #

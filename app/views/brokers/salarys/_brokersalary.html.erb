@@ -7,16 +7,12 @@
 					<div class="accordion-group">
 						<div class="accordion-heading">
 							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=month.month_id%>">
-								薪酬报告 #<%= month.month_id %>
+							 	月度收入 #<%= month.month_id %>
 							</a>
 						</div>
 						<div id="collapse<%=month.month_id%>" <% if index == 0 %>class="collapse in"<% else %>class="collapse"<% end %>>
 							<div class="accordion-inner">
-								<% if month.month_id < 201407 %>
-									<%= render :partial => 'salaries/salary_old', :locals => { :object => broker_salary(@broker,month.month_id) } %>
-								<% else %>
 									<%= render :partial => 'salaries/salary', :locals => { :object => broker_salary(@broker,month.month_id) } %>
-								<% end %>
 							</div>
 						</div>
 					</div>
@@ -24,7 +20,8 @@
 			<% end %>
 		</div>
 		<% else %>
-		<p class="text-center muted">没有记录</p>
+		<p class="text-center muted">目前没有记录</p>
 		<% end %>
+		<p class="text-center">*请主动自行申报个人所得税</p>
 	</div>
 </div>

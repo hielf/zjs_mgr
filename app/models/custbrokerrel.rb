@@ -1,6 +1,6 @@
 class Custbrokerrel < ActiveRecord::Base
-  attr_accessible :dis_ratio
-  
+  attr_accessible :broker_id, :cust_id, :rel_status, :rel_date, :dis_ratio
+
   belongs_to :broker
   belongs_to :cust
 end

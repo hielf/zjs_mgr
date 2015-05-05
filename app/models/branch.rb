@@ -19,15 +19,15 @@ class Branch < ActiveRecord::Base
   attr_accessible :code, :name, :department_id, :location, :phone, :user_id
   belongs_to :department
   belongs_to :user
-  
+
   has_many :users
   has_many :brokers
   has_many :branchindices
-  has_many :custs
-  
+  # has_many :custs
+
   validates :code,  :presence   => true,
                     :numericality => true,
-                    :length     => { :is => 4 }, 
+                    :length     => { :is => 4 },
                     :uniqueness => true
   validates :name,  :presence   => true,
                     :length     => { :maximum => 20 },
@@ -35,19 +35,19 @@ class Branch < ActiveRecord::Base
   validates :department_id,  :presence   => true
   validates :user_id, :presence   => true
 
-  default_scope   :order => 'branches.code' 
-  
+  default_scope   :order => 'branches.code'
+
   def to_label
     "#{code} | #{name}"
   end
-  
+
   # def typebrokers(broker_type)
   #   Broker.typebrokers(broker_type)
   # end
   # scope :type_brokers, lambda { |broker_type| type_broker(broker_type) }
-  # 
+  #
   # private
-  # 
+  #
   #   def self.type_broker(broker_type)
   #     following_ids = %(SELECT followed_id FROM relationships
   #                       WHERE follower_id = :user_id)

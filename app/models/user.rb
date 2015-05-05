@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   attr_accessor   :password, :certificate_num, :bank_account, :role_id, :terms_of_service
   attr_accessible :name, :email, :password, :usercode, :password_confirmation, :userposition_ids,
                   :role_ids, :branch_id, :department_id, :mobile, :status, :user_type, :certificate_num,
-                  :bank_account, :role_id, :terms_of_service
+                  :bank_account, :terms_of_service
 
   belongs_to :branch
   belongs_to :department

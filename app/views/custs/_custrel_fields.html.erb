@@ -1,0 +1,3 @@
+<%= f.input :cust_name, :label => '客户姓名', :disabled => true %>
+<%= f.input :capital_account, :label => '手机号', :disabled => true %>
+<%= f.association :brokers, :collection => Broker.accessible_by(current_ability).all, :label => '所属居间人', :input_html => {:multiple => false} %>

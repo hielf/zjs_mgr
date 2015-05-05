@@ -12,10 +12,6 @@
       <td><%= @brokercusts.invest_custs.count.to_i %></td>
     </tr>
 		<tr>
-      <td><%= link_to '配资客户', {:controller => 'custs', :action => 'finance_custs_index'} %></td>
-      <td><%= @brokercusts.finance_custs.count.to_i %></td> <!-- find_brokerindex(60004, @broker) -->
-    </tr>
-		<tr>
       <td><%= link_to '操盘手客户', {:controller => 'custs', :action => 'trader_custs_index'} %></td>
       <td><%= @brokercusts.trader_custs.count.to_i %></td>
     </tr>
