@@ -2278,7 +2278,7 @@ Dict.find_or_create_by_name_and_dict_type_and_code({:id=>5560,:name=>'冻结',:d
 # Institution.find_or_create_by_institution_name({:institution_code => "99", :institution_name => "其他"})
 
 #update_log
-# Systemupgradelog.find_or_create_by_description(:update_date => '2013-11-25', :description => '系统上线')
+Systemupgradelog.find_or_create_by_description(:update_date => '2015-05-11', :description => '系统上线')
 # Systemupgradelog.find_or_create_by_description(:update_date => '2013-11-28', :description => '界面样式调整')
 # Systemupgradelog.find_or_create_by_description(:update_date => '2013-12-16', :description => '用户管理查询功能更新')
 # Systemupgradelog.find_or_create_by_description(:update_date => '2014-01-06', :description => '管理人员设置系统权限更新')
@@ -2349,4 +2349,3 @@ Dict.find_or_create_by_name_and_dict_type_and_code({:id=>5560,:name=>'冻结',:d
 # Month.find_or_create_by_month({:id => 201510, :year => 2015, :month => "2015年10月"}, :without_protection => true)
 # Month.find_or_create_by_month({:id => 201511, :year => 2015, :month => "2015年11月"}, :without_protection => true)
 # Month.find_or_create_by_month({:id => 201512, :year => 2015, :month => "2015年12月"}, :without_protection => true)
-
