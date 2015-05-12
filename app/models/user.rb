@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
                       :length     => { :is => 11 }
   validates :usercode, :presence   => true,
                        :uniqueness => true,
-                       :length       => { :within => 1..10 }
+                       :length       => { :within => 1..15 }
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 5..20 }

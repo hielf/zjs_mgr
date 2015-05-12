@@ -86,8 +86,8 @@ class CustsController < ApplicationController
       @broker = Broker.find_by_user_id(current_user.id)
     end
     @invest_custs_grid = initialize_grid(Cust,
-              :include => [:branch, :custbrokerrels],
-              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? AND CUSTS.ID IN (?)", @broker, Cust.invest_custs.map{|c| [c.id]} ],
+              :include => [:custbrokerrels],
+              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? AND CUSTS.ID IN (?)", @broker, Cust.invest_custs.map{|c| c.id} ],
               :name => 'investcusts',
               # :enable_export_to_csv => true,
               # :csv_field_separator => ';',
@@ -97,24 +97,6 @@ class CustsController < ApplicationController
     export_grid_if_requested('investcusts' => 'grid')
   end
 
-  def finance_custs_index
-    if params[:broker_id]
-      @broker = Broker.find(params[:broker_id])
-    else
-      @broker = Broker.find_by_user_id(current_user.id)
-    end
-    @finance_custs_grid = initialize_grid(Cust,
-              :include => [:branch, :custbrokerrels],
-              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? AND CUSTS.ID IN (?)", @broker, Cust.finance_custs.map{|c| [c.id]} ],
-              :name => 'financecusts',
-              # :enable_export_to_csv => true,
-              # :csv_field_separator => ';',
-              # :csv_file_name => '导出',
-              :per_page => 20)
-    @title = "配资客户"
-    export_grid_if_requested('financecusts' => 'grid')
-  end
-
   def trader_custs_index
     if params[:broker_id]
       @broker = Broker.find(params[:broker_id])
@@ -122,8 +104,8 @@ class CustsController < ApplicationController
       @broker = Broker.find_by_user_id(current_user.id)
     end
     @trader_custs_grid = initialize_grid(Cust,
-              :include => [:branch, :custbrokerrels],
-              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? AND CUSTS.ID IN (?)", @broker, Cust.trader_custs.map{|c| [c.id]} ],
+              :include => [:custbrokerrels],
+              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? AND CUSTS.ID IN (?)", @broker, Cust.trader_custs.map{|c| c.id} ],
               :name => 'tradercusts',
               # :enable_export_to_csv => true,
               # :csv_field_separator => ';',
@@ -131,6 +113,24 @@ class CustsController < ApplicationController
               :per_page => 20)
     @title = "操盘手客户"
     export_grid_if_requested('tradercusts' => 'grid')
+  end
+
+  def finance_custs_index
+    if params[:broker_id]
+      @broker = Broker.find(params[:broker_id])
+    else
+      @broker = Broker.find_by_user_id(current_user.id)
+    end
+    @finance_custs_grid = initialize_grid(Cust,
+              :include => [:custbrokerrels],
+              :conditions => [ " CUSTBROKERRELS.BROKER_ID = ? AND CUSTS.ID IN (?)", @broker, Cust.finance_custs.map{|c| c.id} ],
+              :name => 'financecusts',
+              # :enable_export_to_csv => true,
+              # :csv_field_separator => ';',
+              # :csv_file_name => '导出',
+              :per_page => 20)
+    @title = "配资客户"
+    export_grid_if_requested('financecusts' => 'grid')
   end
 
   def custrel

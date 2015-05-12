@@ -8,11 +8,19 @@
   </thead>
   <tbody>
     <tr>
+      <% if current_user == @broker.user %>
       <td><%= link_to '投资客户', {:controller => 'custs', :action => 'invest_custs_index'} %></td>
+      <% else %>
+      <td><%= link_to '投资客户', {:controller => 'custs', :action => 'invest_custs_index', :broker_id => @broker} %></td>
+      <% end %>
       <td><%= @brokercusts.invest_custs.count.to_i %></td>
     </tr>
 		<tr>
+      <% if current_user == @broker.user %>
       <td><%= link_to '操盘手客户', {:controller => 'custs', :action => 'trader_custs_index'} %></td>
+      <% else %>
+      <td><%= link_to '操盘手客户', {:controller => 'custs', :action => 'trader_custs_index', :broker_id => @broker} %></td>
+      <% end %>
       <td><%= @brokercusts.trader_custs.count.to_i %></td>
     </tr>
   </tbody>

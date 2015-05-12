@@ -4,15 +4,15 @@
 	  "没有记录"
 	end
 
-	g.column :name => '分支机构', :attribute => 'id', :model => Branch, html: {class: 'hidden-phone'}, filter: false do |cust|
-	  cust.branch.name if cust.branch
+	g.column :name => '手机', :attribute => 'mobile', html: {class: 'hidden-phone'}, :detach_with_id => :phone_filter do |cust|
+	  cust.mobile if cust.mobile
 	end
 
   g.column :name => '客户姓名', :attribute => 'cust_name', :detach_with_id => :name_filter do |cust|
     link_to(cust.cust_name, cust_path(cust))
   end
 
-	g.column :name => '开户日期', :attribute => 'open_date', html: {class: 'hidden-phone'}, :detach_with_id => :open_date_filter do |cust|
+	g.column :name => '开户日期', :attribute => 'open_date', html: {class: 'hidden-phone'}, filter: false do |cust|
     cust.open_date.to_time.strftime("%F") if cust.open_date
   end
 
