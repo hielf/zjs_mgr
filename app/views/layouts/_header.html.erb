@@ -17,7 +17,7 @@
 							  <a class="dropdown-toggle" data-toggle="dropdown" href="#">设置</a>
 							  <ul class="dropdown-menu">
                   <% if can? :access_broker_first_page, :all %>
-                    <li><%= link_to "个人资料", edit_broker_path(@broker) %>
+                    <li><%= link_to "个人资料", edit_broker_path(current_broker) %>
                   <% elsif can? :access_user_first_page, :all %>
                     <li><%= link_to "个人资料", user_path(current_user) %>
                   <% end %>

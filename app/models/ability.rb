@@ -22,7 +22,10 @@ class Ability
       can :read, Workflowhistory
       can :read, Product
       can :downloadfile, Product
-      can :read, Cust, :branch_id => user.branch_id
+      can :read, Cust
+      can :invest_custs_index, Cust
+      can :finance_custs_index, Cust
+      can :trader_custs_index, Cust
       can :productcusts_index, Cust, :branch_id => user.branch_id
       can :cust_detail_index, Cust, :branch_id => user.branch_id
       can :read, Channel
@@ -63,6 +66,9 @@ class Ability
       can :read, Cust
       can :productcusts_index, Cust
       can :cust_detail_index, Cust
+      can :invest_custs_index, Cust
+      can :finance_custs_index, Cust
+      can :trader_custs_index, Cust
       can :manage, Channel
       can :create, Channelurl
       can :read, Notice
@@ -80,7 +86,10 @@ class Ability
       can :crud, Custservvisit
       can :crud, Workflowunderway
       can :read, Workflowhistory
-      can :read, Cust, :branch_id => user.branch_id
+      can :read, Cust
+      can :invest_custs_index, Cust
+      can :finance_custs_index, Cust
+      can :trader_custs_index, Cust
       can :read, Product
       can :downloadfile, Product
       can :productcusts_index, Cust, :branch_id => user.branch_id
